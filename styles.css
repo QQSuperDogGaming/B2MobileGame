@@ -1,0 +1,92 @@
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+background: #f2f2f2;
+max-width: 480px;
+margin: auto;
+}
+
+.app {
+width: 100%;
+padding: 10px;
+}
+
+/* Top Navigation Bar */
+.navbar {
+display: flex;
+justify-content: space-around;
+background: white;
+padding: 10px;
+border-bottom: 2px solid #ddd;
+}
+
+.navbar button {
+background: none;
+border: none;
+font-size: 18px;
+padding: 8px 20px;
+cursor: pointer;
+}
+
+.navbar button.active {
+border-bottom: 2px solid blue;
+font-weight: bold;
+}
+
+/* Featured Games */
+.featured-section {
+margin-top: 15px;
+}
+
+.featured-container {
+display: flex;
+overflow-x: auto;
+padding: 10px;
+}
+
+.featured-card {
+min-width: 140px;
+margin-right: 10px;
+background: white;
+padding: 10px;
+border-radius: 10px;
+text-align: center;
+}
+
+.featured-card img {
+width: 100px;
+border-radius: 10px;
+}
+
+/* Scrollable Game List */
+.games-list {
+margin-top: 15px;
+}
+
+.game-card {
+display: flex;
+align-items: center;
+background: white;
+margin-bottom: 10px;
+padding: 10px;
+border-radius: 10px;
+}
+
+.game-card img {
+width: 60px;
+border-radius: 10px;
+margin-right: 10px;
+}
+
+.game-info {
+flex: 1;
+}
+
+.download-btn {
+background: blue;
+color: white;
+border: none;
+padding: 8px 12px;
+border-radius: 5px;
+cursor: pointer;
+}
