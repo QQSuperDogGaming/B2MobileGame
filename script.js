@@ -1,26 +1,7 @@
-const featuredGames = [
-    { title: "Game 1", description: "Exciting new game!", image: "https://via.placeholder.com/100" },
-    { title: "Game 2", description: "Trending now!", image: "https://via.placeholder.com/100" },
-];
-
 const games = [
-    { title: "Game A", description: "Fun and challenging!", rating: 4.5, image: "https://via.placeholder.com/60" },
-    { title: "Game B", description: "An adventure awaits!", rating: 4.7, image: "https://via.placeholder.com/60" },
-    { title: "Flappy Bird", description: "Classic flying game!", rating: 4.9, image: "https://via.placeholder.com/60", playable: true }
+    { title: "Flappy Bird", description: "Classic flying game!", rating: 4.9, image: "https://via.placeholder.com/60", playable: "flappy" },
+    { title: "Angry Birds", description: "Knock down structures!", rating: 4.8, image: "https://via.placeholder.com/60", playable: "angry" }
 ];
-
-// Load Featured Games
-const featuredContainer = document.getElementById("featured-games");
-featuredGames.forEach(game => {
-    let gameCard = document.createElement("div");
-    gameCard.classList.add("featured-card");
-    gameCard.innerHTML = `
-        <img src="${game.image}" alt="${game.title}">
-        <p>${game.title}</p>
-        <small>${game.description}</small>
-    `;
-    featuredContainer.appendChild(gameCard);
-});
 
 // Load Game List
 const gameList = document.getElementById("game-list");
@@ -34,27 +15,28 @@ games.forEach(game => {
             <p>${game.description}</p>
             <span>⭐ ${game.rating}</span>
         </div>
-        <button class="download-btn">${game.playable ? "Play" : "Get"}</button>
+        <button class="download-btn">Play</button>
     `;
 
-    if (game.playable) {
-        gameCard.querySelector("button").addEventListener("click", () => {
-            document.getElementById("flappy-bird-container").style.display = "flex";
-            startFlappyBird();
-        });
-    }
+    gameCard.querySelector("button").addEventListener("click", () => {
+        document.getElementById("store").style.display = "none";
+        document.getElementById("game-screen").style.display = "flex";
+        if (game.playable === "flappy") startFlappyBird();
+        if (game.playable === "angry") startAngryBirds();
+    });
 
     gameList.appendChild(gameCard);
 });
 
-// Close Flappy Bird
-document.getElementById("close-game").addEventListener("click", () => {
-    document.getElementById("flappy-bird-container").style.display = "none";
+// Back to Store
+document.getElementById("back-btn").addEventListener("click", () => {
+    document.getElementById("store").style.display = "block";
+    document.getElementById("game-screen").style.display = "none";
 });
 
 // Flappy Bird Game
 function startFlappyBird() {
-    const canvas = document.getElementById("flappyCanvas");
+    const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
 
     let bird = { x: 50, y: 150, radius: 10, velocity: 0 };
@@ -68,11 +50,34 @@ function startFlappyBird() {
     function updateGame() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Bird movement
         bird.velocity += gravity;
         bird.y += bird.velocity;
 
         ctx.fillStyle = "yellow";
+        ctx.beginPath();
+        ctx.arc(bird.x, bird.y, bird.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        requestAnimationFrame(updateGame);
+    }
+
+    updateGame();
+}
+
+// Angry Birds Game
+function startAngryBirds() {
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let bird = { x: 50, y: 200, radius: 10, velocityX: 2, velocityY: -2 };
+
+    function updateGame() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        bird.x += bird.velocityX;
+        bird.y += bird.velocityY;
+
+        ctx.fillStyle = "red";
         ctx.beginPath();
         ctx.arc(bird.x, bird.y, bird.radius, 0, Math.PI * 2);
         ctx.fill();
