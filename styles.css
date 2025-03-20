@@ -11,7 +11,7 @@ body {
     padding: 10px;
 }
 
-/* Top Navigation Bar */
+/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-around;
@@ -91,19 +91,14 @@ body {
     cursor: pointer;
 }
 
-/* Game Modal */
-.game-modal {
+/* Game Screen (Hidden Initially) */
+.game-container {
     display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: black;
 }
 
 #gameCanvas {
@@ -112,11 +107,11 @@ body {
     height: 400px;
 }
 
-#close-game {
-    margin-top: 10px;
+#back-btn {
     background: red;
     color: white;
     padding: 10px;
     border: none;
     cursor: pointer;
+    margin-bottom: 10px;
 }
