@@ -20,7 +20,7 @@ games.forEach(game => {
 
     gameCard.querySelector("button").addEventListener("click", () => {
         document.getElementById("store").style.display = "none";
-        document.getElementById("game-screen").style.display = "flex";
+        document.getElementById("game-section").style.display = "block";
         if (game.playable === "flappy") startFlappyBird();
         if (game.playable === "angry") startAngryBirds();
     });
@@ -31,7 +31,7 @@ games.forEach(game => {
 // Back to Store
 document.getElementById("back-btn").addEventListener("click", () => {
     document.getElementById("store").style.display = "block";
-    document.getElementById("game-screen").style.display = "none";
+    document.getElementById("game-section").style.display = "none";
 });
 
 // Flappy Bird Game
