@@ -1,53 +1,53 @@
-body {
-margin: 0;
-font-family: sans-serif;
-background: #f5f5f5;
-text-align: center;
+const games = [
+{
+title: "Flappy Bird",
+description: "Classic flying game!",
+rating: 4.9,
+image: "assets/images/games/flappy-icon.png",
+playable: "flappy"
+},
+{
+title: "Angry Birds",
+description: "Knock down structures!",
+rating: 4.8,
+image: "assets/images/games/angry-icon.png",
+playable: "angry"
+},
+{
+title: "Candy Crush",
+description: "Match-3 puzzle fun!",
+rating: 4.7,
+image: "assets/images/games/candy-icon.png",
+playable: "candy"
+}
+];
+
+const featured = document.getElementById("featured");
+const gameList = document.getElementById("gameList");
+
+games.forEach((game, index) => {
+const card = document.createElement("div");
+card.className = "game-card";
+card.innerHTML =     `<img src="${game.image}" alt="${game.title}">     <h4>${game.title}</h4>     <p>${game.description}</p>     <p>⭐ ${game.rating}</p>     <img src="assets/images/buttons/play.png" alt="Play" class="btn-img" onclick="launchGame('${game.playable}')">`  ;
+if (index < 2) featured.appendChild(card);
+gameList.appendChild(card.cloneNode(true));
+});
+
+function launchGame(game) {
+const canvas = document.getElementById("gameCanvas");
+const closeBtn = document.getElementById("closeBtn");
+canvas.style.display = "block";
+closeBtn.style.display = "inline";
+
+if (game === "flappy") startFlappy();
+if (game === "angry") startAngry();
+if (game === "candy") startCandyCrush();
 }
 
-h2 {
-margin: 10px;
-}
-
-.top-buttons {
-display: flex;
-justify-content: center;
-gap: 10px;
-margin: 10px;
-}
-
-.featured, .game-list {
-display: flex;
-overflow-x: auto;
-padding: 10px;
-gap: 10px;
-}
-
-.game-card {
-background: white;
-border-radius: 10px;
-padding: 10px;
-width: 150px;
-box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.game-card img {
-width: 60px;
-height: 60px;
-}
-
-canvas {
-display: none;
-background: #ccf;
-margin: 10px auto;
-}
-
-.btn-img {
-width: 80px;
-cursor: pointer;
-}
-
-.close-btn {
-display: none;
-margin-top: 10px;
+function closeGame() {
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+canvas.style.display = "none";
+document.getElementById("closeBtn").style.display = "none";
 }
