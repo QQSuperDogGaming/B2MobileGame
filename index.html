@@ -1,10 +1,30 @@
-<!DOCTYPE html> <html lang="en"> <head>   
-    <meta charset="UTF-8">   
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
-    <title>QDog: Angry Birds Level</title>   
-    <link rel="stylesheet" href="style.css"> </head> <body>   
-        <canvas id="gameCanvas"></canvas>   <div id="ui">     
-            <p id="levelText">Level 1</p>     
-            <p id="bossHealth" style="display:none;">King Pig HP: 3</p>     
-            <p id="message"></p>   </div>   
-        <script src="script.js"></script> </body> </html>;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Game Store</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="top-buttons">
+<img src="assets/images/buttons/new.png" alt="New" class="btn-img" />
+<img src="assets/images/buttons/hot.png" alt="Hot" class="btn-img" />
+</div>
+
+<h2>Featured Games</h2>
+<div class="featured" id="featured"></div>
+
+<h2>All Games</h2>
+<div class="game-list" id="gameList"></div>
+
+<canvas id="gameCanvas" width="360" height="480"></canvas>
+
+<img src="assets/images/buttons/close.png" alt="Close" id="closeBtn" class="btn-img close-btn" onclick="closeGame()" />
+
+<script src="script.js"></script>
+<script src="flappy.js"></script>
+<script src="angry.js"></script>
+<script src="candy.js"></script>
+</body>
+</html>
